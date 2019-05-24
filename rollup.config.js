@@ -3,6 +3,8 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import serve from 'rollup-plugin-serve';
+import sass from 'rollup-plugin-sass';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -15,6 +17,10 @@ export default {
 		file: 'public/bundle.js'
 	},
 	plugins: [
+
+		sass({
+			insert: true
+		}),
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
@@ -22,7 +28,8 @@ export default {
 			// a separate file — better for performance
 			css: css => {
 				css.write('public/bundle.css');
-			}
+			},
+
 		}),
 
 		// If you have external dependencies installed from
@@ -35,6 +42,11 @@ export default {
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
+		!production && serve({
+			// open: true,
+			contentBase: 'public',
+			historyApiFallback: '/index.html',
+		}),
 		!production && livereload('public'),
 
 		// If we're building for production (npm run build
