@@ -1,11 +1,8 @@
 <script>
-	export let name;
+	import AppRouter from './AppRouter';
 </script>
 
-<style>
-	h1 {
-		color: purple;
-	}
-</style>
-
-<h1>Hello {name}!</h1>
+<div>
+  asdas
+  <AppRouter />
+</div>

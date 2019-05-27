@@ -16,5 +16,11 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "webpack-dev-server --content-base public"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "svelte-router": "^2.0.0-beta.1",
+    "svelte-routing": "^1.1.1",
+    "svero": "^0.5.0"
   }
 }
