@@ -1,13 +1,14 @@
 import App from './App.svelte';
 import axios from 'axios'
+import './styles/theme.scss'
 
 axios.defaults.baseURL = 'http://localhost:8000/api/';
 
-function successLog(message) {
+export function successLog(message) {
 	console.log('%c' + message, "color: #4BB543; font-weight: 700");
 }
 
-function errorLog(message) {
+export function errorLog(message) {
 	console.log('%c' + message, "color: #cc0000; font-weight: 700");
 }
 

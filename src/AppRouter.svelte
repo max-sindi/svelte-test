@@ -1,9 +1,14 @@
 <script >
-  import {Router} from 'svelte-routing';
-  console.log(Router)
+  import { Router, Route } from 'svelte-routing'
   import AuthPage from './components/pages/AuthPage.svelte';
-// <Router>
-//   <Route path="/auth" component={AuthPage} />
-// </Router>
+  import HomePage from './components/pages/HomePage.svelte'
+
+  import { isLoggedIn } from './store/auth'
 </script>
+
+
+<Router>
+  <Route path="/" component={HomePage} />
+  <Route path="/auth" component={AuthPage} condition={!$isLoggedIn} />
+</Router>
 

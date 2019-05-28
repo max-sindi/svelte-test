@@ -19,7 +19,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.svelte$/,
-				exclude: /node_modules/,
+				// exclude: /node_modules/,
 				use: {
 					loader: 'svelte-loader',
 					options: {
@@ -37,6 +37,14 @@ module.exports = {
 					 * */
 					prod ? MiniCssExtractPlugin.loader : 'style-loader',
 					'css-loader'
+				]
+			},
+			{
+				test: /\.scss$/,
+				use: [
+					"style-loader", // creates style nodes from JS strings
+					"css-loader", // translates CSS into CommonJS
+					"sass-loader" // compiles Sass to CSS, using Node Sass by default
 				]
 			}
 		]

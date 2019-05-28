@@ -3,6 +3,5 @@
 </script>
 
 <div>
-  asdas
   <AppRouter />
 </div>
