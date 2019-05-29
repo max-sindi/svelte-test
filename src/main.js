@@ -5,7 +5,7 @@ import './styles/theme.scss'
 axios.defaults.baseURL = 'http://localhost:8000/api/';
 
 export function successLog(message) {
-	console.log('%c' + message, "color: #4BB543; font-weight: 700");
+	console.log('%c' + message, " color: #4BB543; font-weight: 700");
 }
 
 export function errorLog(message) {
