@@ -9,6 +9,5 @@
 
 <Router>
   <Route path="/" component={HomePage} />
-  <Route path="/auth" component={AuthPage} condition={!$isLoggedIn} />
+  <!-- <Route path="/auth" component={AuthPage} condition={!$isLoggedIn} /> -->
 </Router>
-

@@ -2,7 +2,7 @@ import { writable } from 'svelte/store'
 import {errorLog, successLog} from '../main'
 import axios from 'axios'
 
-export const isEmailAvailable = writable(false); // enum [false, true, null]
+export const isEmailAvailable = writable(true); // enum [false, true, null]
 
 export const user = writable(null);
 
@@ -11,13 +11,14 @@ user.subscribe(v => console.log(v))
 
 
 export const isLoggedIn = (function() {
-  const res = writable(false);
+  const isLoggedIn = writable(false);
 
   return {
-    ...res,
+    ...isLoggedIn,
     signup: data => {
       return axios.post('auth/signup', data).
         then(res => user.set(res.data)).
+        then(res => isLoggedIn.set(true)).
         catch(err => errorLog(err.message))
     },
   }

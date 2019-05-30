@@ -9,12 +9,13 @@
     password: yup.string().required(),
   });
 
-  let email = '';
-  let password = '';
+  let email = Date.now().toString();
+  let password = 'df';
   let formValidity = {
-    valid: false,
+    valid: schema.isValidSync({ email, password}),
     message: ''
   };
+  console.log(formValidity);
   let emailAvailability = {
     valid: null,
     message: '',
@@ -69,22 +70,30 @@
   }
 </script>
 
-<div>
+<div class="form">
   <div>
     <label>
       Email
-      <input name="email" bind:value={email} on:input={onChange}>
+      <input name="email"
+      autocomplete="off"
+      bind:value={email} on:input={onChange}>
     </label>
   </div>
   <div>
     <label>
       Password
-      <input name="password" bind:value={password} type="password" on:input={onChange}>
+      <input name="password"
+       browser-autocomple="false"
+       bind:value={password} type="password" on:input={onChange}>
     </label>
   </div>
 
   <div>
-    <button disabled={formValidity.valid === false ||  isEmailAvailable.valid === false} on:click={submitLogin}>Submit</button>
+    {#if $isEmailAvailable}
+      <button disabled={formValidity.valid === false ||  isEmailAvailable.valid === false} on:click={submitLogin}>Submit</button>
+    {:else if $isEmailAvailable === null }
+    <div>Loading...</div>
+    {/if}
   </div>
 
   {#if formValidity.valid === false || emailAvailability.valid === false}
@@ -94,3 +103,14 @@
   {/if}
 
 </div>
+
+<style>
+
+input {
+  width: 100%;
+}
+
+.form {
+  margin-bottom: 45px;
+}
+</style>
